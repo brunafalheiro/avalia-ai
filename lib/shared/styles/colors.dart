@@ -4,6 +4,7 @@ class AVAIColors {
   AVAIColors._();
 
   static const Color royalBlue = Color(0xff1D1763);
+  static const Color darkRoyalBlue = Color(0xff0D0A2B);
   static const Color white100 = Color(0xffffffff);
   static const Color white50 = Color(0xffFAFAFA);
   static const Color white30 = Color(0xFFF7F7F7);
