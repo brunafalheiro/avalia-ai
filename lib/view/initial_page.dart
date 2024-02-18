@@ -26,7 +26,7 @@ class InitialPage extends StatelessWidget {
                       children: [
                         Container(
                           width: double.infinity,
-                          color: const Color(0xff0D0A2B),
+                          color: AVAIColors.darkRoyalBlue,
                           child: Image.asset(
                             'assets/images/main.png',
                             height: 280,
@@ -75,16 +75,24 @@ class InitialPage extends StatelessWidget {
                           Text(
                             'Centralize sua experiência acadêmica: descubra, consulte e avalie disciplinas e professores em um único lugar',
                             textAlign: TextAlign.center,
-                            style: AVAITextStyle().subtitle,
+                            style: AVAITextStyle(color: AVAIColors.royalBlue)
+                                .subtitle,
                           ),
                           const SizedBox(height: 24),
-                          AVAIButton(label: 'Criar conta', onPressed: () => {}),
+                          AVAIButton(
+                              label: 'Criar conta',
+                              onPressed: () => {
+                                    Navigator.pushNamed(
+                                        context, '/auth/register')
+                                  }),
                           const SizedBox(height: 12),
                           AVAIButton(
                               label: 'Entrar',
                               secondary: true,
-                              onPressed: () => {}),
-                          const SizedBox(height: 72),
+                              onPressed: () => {
+                                    Navigator.pushNamed(context, '/auth/login')
+                                  }),
+                          const SizedBox(height: 48),
                         ],
                       ),
                     ),
