@@ -1,6 +1,6 @@
-import 'package:avalia_ai/shared/widgets/back_button.dart';
 import 'package:avalia_ai/shared/widgets/button.dart';
 import 'package:avalia_ai/shared/widgets/dropdown.dart';
+import 'package:avalia_ai/shared/widgets/navigation_button.dart';
 import 'package:avalia_ai/shared/widgets/text_input.dart';
 import 'package:avalia_ai/shared/styles/text_styles.dart';
 import 'package:avalia_ai/shared/styles/colors.dart';
@@ -20,13 +20,19 @@ class AuthPage extends StatelessWidget {
           allowNumbers: false,
           allowSpecialCharacters: false,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 24),
         AVAIDropdown(
           label: 'Período de ingresso',
           placeholder: '20xx-x',
           options: semesterOptions,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please select an option';
+            }
+            return null;
+          },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -40,7 +46,7 @@ class AuthPage extends StatelessWidget {
           allowNumbers: true,
           allowSpaces: false,
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 24),
         AVAITextInput(
           label: 'Senha',
           placeholder: '••••••',
@@ -57,7 +63,7 @@ class AuthPage extends StatelessWidget {
           value: false,
           onChanged: (bool? newValue) {},
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: 6),
         RichText(
           text: TextSpan(
             children: <TextSpan>[
@@ -94,7 +100,7 @@ class AuthPage extends StatelessWidget {
     );
   }
 
-  Widget buildAlternativeButton() {
+  Widget buildAlternativeButton(context) {
     return RichText(
       text: TextSpan(
         children: <TextSpan>[
@@ -107,7 +113,7 @@ class AuthPage extends StatelessWidget {
             style: AVAITextStyle().link,
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                // TODO: change to register state
+                Navigator.pushNamed(context, '/auth/register');
               },
           ),
         ],
@@ -151,7 +157,7 @@ class AuthPage extends StatelessWidget {
                         Container(
                           width: double.infinity,
                           decoration: const BoxDecoration(
-                            color: Color(0xff0D0A2B),
+                            color: AVAIColors.darkRoyalBlue,
                           ),
                           child: Image.asset(
                             'assets/images/main.png',
@@ -162,8 +168,10 @@ class AuthPage extends StatelessWidget {
                         Positioned(
                           top: 16,
                           left: 16,
-                          child: AVAIBackButton(
-                              onPressed: () => {Navigator.pop(context)}),
+                          child: AVAINavigationButton(
+                            backButton: true,
+                            onPressed: () => {Navigator.pop(context)},
+                          ),
                         ),
                       ],
                     ),
@@ -179,7 +187,7 @@ class AuthPage extends StatelessWidget {
                             buildPersonalInfoInputs(semesterOptions),
                             buildIdentifiersInput(),
                             const SizedBox(
-                              height: 16,
+                              height: 24,
                             ),
                             buildTermsOfUse(),
                           ] else ...[
@@ -189,11 +197,12 @@ class AuthPage extends StatelessWidget {
                             ),
                             buildForgotPassword(),
                             const SizedBox(
-                              height: 40,
+                              height: 36,
                             ),
                             AVAIButton(
                               label: 'Entrar',
-                              onPressed: () => {},
+                              onPressed: () =>
+                                  {Navigator.pushNamed(context, '/home')},
                             ),
                           ],
                         ],
@@ -208,7 +217,7 @@ class AuthPage extends StatelessWidget {
                           maxWidth: 720,
                         ),
                         padding: const EdgeInsets.symmetric(horizontal: 24),
-                        margin: const EdgeInsets.only(top: 32),
+                        margin: const EdgeInsets.only(top: 36),
                         child: AVAIButton(
                           label: 'Cadastrar',
                           onPressed: () => {},
@@ -216,9 +225,9 @@ class AuthPage extends StatelessWidget {
                       )
                     ] else ...[
                       const SizedBox(
-                        height: 24,
+                        height: 16,
                       ),
-                      buildAlternativeButton(),
+                      buildAlternativeButton(context),
                     ],
                     const SizedBox(height: 48),
                   ],
