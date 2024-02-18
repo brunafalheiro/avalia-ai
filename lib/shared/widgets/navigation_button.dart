@@ -19,11 +19,14 @@ class AVAINavigationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    IconData icon = backButton
-        ? Icons.arrow_back_ios
-        : closeButton
-            ? Icons.close
-            : Icons.menu;
+    IconData icon;
+    if (backButton) {
+      icon = Icons.arrow_back;
+    } else if (menuButton) {
+      icon = Icons.menu;
+    } else {
+      icon = Icons.close;
+    }
 
     return InkWell(
       onTap: onPressed,
@@ -36,10 +39,13 @@ class AVAINavigationButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: AVAIColors.lightGrey),
         ),
-        child: Icon(
-          icon,
-          size: 18,
-          color: AVAIColors.royalBlue,
+        child: Align(
+          alignment: Alignment.center,
+          child: Icon(
+            icon,
+            size: 24,
+            color: AVAIColors.royalBlue,
+          ),
         ),
       ),
     );
