@@ -9,38 +9,42 @@ class AVAITextStyle {
   TextStyle get title => TextStyle(
         fontSize: 18,
         color: color,
+        fontWeight: FontWeight.w600,
       );
 
   TextStyle get subtitle => TextStyle(
-        fontSize: 14,
+        fontSize: 16,
         color: color,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w400,
       );
 
   TextStyle get label => TextStyle(
         fontSize: 14,
         color: color,
+        fontWeight: FontWeight.w300,
       );
 
   TextStyle get content => TextStyle(
         fontSize: 16,
         color: color,
+        fontWeight: FontWeight.w400,
       );
 
   TextStyle get boldContent => TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: color,
         fontWeight: FontWeight.w600,
       );
 
   TextStyle get semiBoldContent => TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: color,
         fontWeight: FontWeight.w600,
       );
 
   TextStyle get placeholder => TextStyle(
         fontSize: 16,
+        fontWeight: FontWeight.w400,
         color: AVAIColors.grey,
       );
 
@@ -52,7 +56,8 @@ class AVAITextStyle {
       );
 
   TextStyle get action => TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: color,
+        fontWeight: FontWeight.w500,
       );
 }
