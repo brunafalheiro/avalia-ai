@@ -11,14 +11,16 @@ class AVAITextInput extends StatelessWidget {
   final bool allowNumbers;
   final bool allowSpecialCharacters;
   final bool allowSpaces;
+  final String? Function(String?)? validatorFunction;
   const AVAITextInput({
     super.key,
-    required this.label,
+    this.label = '',
     required this.placeholder,
     this.isPasswordField = false,
     this.allowNumbers = true,
     this.allowSpecialCharacters = true,
     this.allowSpaces = true,
+    this.validatorFunction,
   });
 
   @override
@@ -26,13 +28,16 @@ class AVAITextInput extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          textAlign: TextAlign.start,
-          style: AVAITextStyle().label,
-        ),
-        const SizedBox(height: 4),
-        TextField(
+        if (label.isNotEmpty) ...[
+          Text(
+            label,
+            textAlign: TextAlign.start,
+            style: AVAITextStyle().label,
+          ),
+          const SizedBox(height: 4)
+        ],
+        TextFormField(
+          validator: validatorFunction,
           obscureText: isPasswordField,
           inputFormatters: [
             CustomTextInputFormatter(
@@ -49,6 +54,7 @@ class AVAITextInput extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 20,
             ),
+            errorStyle: const TextStyle(color: Colors.green),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4),
             ),
