@@ -1,8 +1,8 @@
 import 'package:avalia_ai/shared/styles/colors.dart';
 import 'package:avalia_ai/shared/styles/shadows.dart';
 import 'package:avalia_ai/shared/styles/text_styles.dart';
-import 'package:avalia_ai/shared/widgets/button.dart';
-import 'package:avalia_ai/shared/widgets/menu_button.dart';
+import 'package:avalia_ai/shared/widgets/search_bar.dart';
+import 'package:avalia_ai/shared/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -55,18 +55,31 @@ class HomePage extends StatelessWidget {
                       children: [
                         Container(
                           width: double.infinity,
-                          color: const Color(0xff0D0A2B),
-                          child: Image.asset(
-                            'assets/images/programmer.png',
-                            height: 280,
-                            fit: BoxFit.contain,
-                          ),
+                          color: AVAIColors.darkRoyalBlue,
+                          child: MediaQuery.of(context).size.width < 720
+                              ? ConstrainedBox(
+                                  constraints:
+                                      const BoxConstraints(maxHeight: 280),
+                                  child: Image.asset(
+                                    'assets/images/programmer.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              : ConstrainedBox(
+                                  constraints:
+                                      const BoxConstraints(maxHeight: 360),
+                                  child: Image.asset(
+                                    'assets/images/programmer.png',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
                         ),
                         Positioned(
                           top: 16,
                           left: 16,
-                          child: AVAIMenuButton(
+                          child: AVAINavigationButton(
                             onPressed: () => {},
+                            menuButton: true,
                           ),
                         ),
                         Positioned(
@@ -76,10 +89,16 @@ class HomePage extends StatelessWidget {
                           child: Center(
                             child: Container(
                               constraints: const BoxConstraints(
-                                  minWidth: 288, maxWidth: 420),
+                                minWidth: 288,
+                                maxWidth: 420,
+                              ),
                               width: double.infinity,
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 24),
+                                horizontal: 16,
+                                vertical: 24,
+                              ),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 24),
                               decoration: BoxDecoration(
                                 color: AVAIColors.white100,
                                 borderRadius: BorderRadius.circular(12),
@@ -104,31 +123,47 @@ class HomePage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Column(
                         children: [
-                          const SizedBox(height: 72),
-                          Container(
-                            height: 40,
-                            color: Colors.grey,
+                          const SizedBox(height: 86),
+                          Row(
+                            children: [
+                              const Expanded(
+                                child: AVAISearchbar(),
+                              ),
+                              const SizedBox(width: 8),
+                              Container(
+                                width: 32,
+                                height: 32,
+                                color: AVAIColors.lightGrey,
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 12),
-                          for (var test in test)
-                            Container(
-                              alignment: Alignment.center,
-                              constraints: const BoxConstraints(minHeight: 68),
-                              margin: const EdgeInsets.only(top: 12),
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 16),
-                              decoration: BoxDecoration(
-                                color: AVAIColors.white100,
-                                borderRadius: BorderRadius.circular(6),
-                                boxShadow: [AVAIShadows.lightShadow],
-                              ),
-                              child: Text(
-                                test,
-                                textAlign: TextAlign.center,
-                                style: AVAITextStyle().boldContent,
+                          for (var test in test) ...[
+                            const SizedBox(height: 12),
+                            InkWell(
+                              onTap: () => {
+                                Navigator.pushNamed(context, '/professors/1'),
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                constraints:
+                                    const BoxConstraints(minHeight: 72),
+                                width: double.infinity,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 16),
+                                decoration: BoxDecoration(
+                                  color: AVAIColors.white100,
+                                  borderRadius: BorderRadius.circular(6),
+                                  boxShadow: [AVAIShadows.lightShadow],
+                                ),
+                                child: Text(
+                                  test,
+                                  textAlign: TextAlign.center,
+                                  style: AVAITextStyle().semiBoldContent,
+                                ),
                               ),
                             ),
+                          ],
                           const SizedBox(height: 72),
                         ],
                       ),
