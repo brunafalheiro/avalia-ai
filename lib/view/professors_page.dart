@@ -1,16 +1,16 @@
 import 'package:avalia_ai/shared/styles/colors.dart';
 import 'package:avalia_ai/shared/styles/shadows.dart';
 import 'package:avalia_ai/shared/styles/text_styles.dart';
-import 'package:avalia_ai/shared/widgets/back_button.dart';
-import 'package:avalia_ai/shared/widgets/button.dart';
-import 'package:avalia_ai/shared/widgets/menu_button.dart';
+import 'package:avalia_ai/shared/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 
 class ProfessorsPage extends StatelessWidget {
-  const ProfessorsPage({super.key});
+  String subjectId;
+  ProfessorsPage({super.key, required this.subjectId});
 
   @override
   Widget build(BuildContext context) {
+    print(subjectId);
     final test = [
       'professor 1',
       'professor 2',
@@ -37,14 +37,15 @@ class ProfessorsPage extends StatelessWidget {
                       children: [
                         Container(
                           width: double.infinity,
-                          height: 128,
-                          color: const Color(0xff0D0A2B),
+                          height: 160,
+                          color: AVAIColors.darkRoyalBlue,
                         ),
                         Positioned(
                           top: 16,
                           left: 16,
-                          child: AVAIBackButton(
-                            onPressed: () => {},
+                          child: AVAINavigationButton(
+                            backButton: true,
+                            onPressed: () => {Navigator.pop(context)},
                           ),
                         ),
                         Positioned(
