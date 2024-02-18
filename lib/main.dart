@@ -1,17 +1,24 @@
+import 'package:avalia_ai/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:avalia_ai/shared/styles/colors.dart';
-import 'package:avalia_ai/view/initial_page.dart';
-import 'package:avalia_ai/view/auth_page.dart';
-import 'package:avalia_ai/view/homepage.dart';
-import 'package:avalia_ai/view/professors_page.dart';
-import 'package:avalia_ai/view/evaluations_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AvaliaAi());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AvaliaAi extends StatefulWidget {
+  const AvaliaAi({super.key});
+
+  @override
+  AvaliaAiState createState() => AvaliaAiState();
+}
+
+class AvaliaAiState extends State<AvaliaAi> {
+  @override
+  void initState() {
+    super.initState();
+    FluroRoute.setupRouter();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +26,11 @@ class MyApp extends StatelessWidget {
       title: 'Avalia Aí',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AVAIColors.royalBlue),
+        fontFamily: 'PublicSans',
         useMaterial3: true,
       ),
-      home: const EvaluationsPage(),
+      initialRoute: '/',
+      onGenerateRoute: FluroRoute.router.generator,
     );
   }
 }
