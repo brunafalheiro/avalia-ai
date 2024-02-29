@@ -83,7 +83,7 @@ class InitialPage extends StatelessWidget {
                           AVAIButton(
                             label: 'Criar conta',
                             onPressed: () async {
-                              // Navigator.pushNamed(context, '/auth/register')
+                              Navigator.pushNamed(context, '/auth/register');
                               await fetchSubjects();
                             },
                           ),
