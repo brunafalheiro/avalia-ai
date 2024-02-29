@@ -70,7 +70,7 @@ class EvaluationsPage extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     style: AVAITextStyle(
                                             color: AVAIColors.royalBlue)
-                                        .subtitle,
+                                        .content,
                                   ),
                                 ],
                               ),
@@ -81,7 +81,7 @@ class EvaluationsPage extends StatelessWidget {
                     ),
                     Container(
                       constraints: const BoxConstraints(
-                        maxWidth: 640,
+                        maxWidth: 560,
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Column(

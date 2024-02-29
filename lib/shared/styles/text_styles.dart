@@ -30,6 +30,12 @@ class AVAITextStyle {
         fontWeight: FontWeight.w400,
       );
 
+  TextStyle get mediumContent => TextStyle(
+        fontSize: 16,
+        color: color,
+        fontWeight: FontWeight.w500,
+      );
+
   TextStyle get boldContent => TextStyle(
         fontSize: 18,
         color: color,

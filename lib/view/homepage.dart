@@ -118,7 +118,7 @@ class HomePage extends StatelessWidget {
                     ),
                     Container(
                       constraints: const BoxConstraints(
-                        maxWidth: 640,
+                        maxWidth: 560,
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Column(

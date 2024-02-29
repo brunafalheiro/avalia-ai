@@ -86,12 +86,12 @@ class AuthPage extends StatelessWidget {
     );
   }
 
-  Widget buildForgotPassword() {
+  Widget buildForgotPassword(context) {
     return Align(
       alignment: Alignment.centerRight,
       child: InkWell(
         // TODO: go to forgot password page
-        onTap: () => {},
+        onTap: () => {Navigator.pushNamed(context, '/reset-password')},
         child: Text(
           'Esqueci a senha',
           style: AVAITextStyle().link,
@@ -177,7 +177,7 @@ class AuthPage extends StatelessWidget {
                     ),
                     Container(
                       constraints: const BoxConstraints(
-                        maxWidth: 720,
+                        maxWidth: 560,
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Column(
@@ -195,7 +195,7 @@ class AuthPage extends StatelessWidget {
                             const SizedBox(
                               height: 16,
                             ),
-                            buildForgotPassword(),
+                            buildForgotPassword(context),
                             const SizedBox(
                               height: 36,
                             ),
@@ -214,7 +214,7 @@ class AuthPage extends StatelessWidget {
                     if (register) ...[
                       Container(
                         constraints: const BoxConstraints(
-                          maxWidth: 720,
+                          maxWidth: 560,
                         ),
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         margin: const EdgeInsets.only(top: 36),

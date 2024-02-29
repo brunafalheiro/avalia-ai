@@ -2,6 +2,7 @@ import 'package:avalia_ai/shared/styles/colors.dart';
 import 'package:avalia_ai/shared/styles/shadows.dart';
 import 'package:avalia_ai/shared/styles/text_styles.dart';
 import 'package:avalia_ai/shared/widgets/button.dart';
+import 'package:avalia_ai/api.dart';
 import 'package:flutter/material.dart';
 
 class InitialPage extends StatelessWidget {
@@ -65,7 +66,7 @@ class InitialPage extends StatelessWidget {
                     ),
                     Container(
                       constraints: const BoxConstraints(
-                        maxWidth: 640,
+                        maxWidth: 560,
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Column(
@@ -76,22 +77,23 @@ class InitialPage extends StatelessWidget {
                             'Centralize sua experiência acadêmica: descubra, consulte e avalie disciplinas e professores em um único lugar',
                             textAlign: TextAlign.center,
                             style: AVAITextStyle(color: AVAIColors.royalBlue)
-                                .subtitle,
+                                .content,
                           ),
                           const SizedBox(height: 24),
                           AVAIButton(
-                              label: 'Criar conta',
-                              onPressed: () => {
-                                    Navigator.pushNamed(
-                                        context, '/auth/register')
-                                  }),
+                            label: 'Criar conta',
+                            onPressed: () async {
+                              // Navigator.pushNamed(context, '/auth/register')
+                              await fetchSubjects();
+                            },
+                          ),
                           const SizedBox(height: 12),
                           AVAIButton(
-                              label: 'Entrar',
-                              secondary: true,
-                              onPressed: () => {
-                                    Navigator.pushNamed(context, '/auth/login')
-                                  }),
+                            label: 'Entrar',
+                            secondary: true,
+                            onPressed: () =>
+                                {Navigator.pushNamed(context, '/auth/login')},
+                          ),
                           const SizedBox(height: 48),
                         ],
                       ),
